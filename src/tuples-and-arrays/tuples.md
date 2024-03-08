@@ -5,7 +5,9 @@ minutes: 5
 # Tuples
 
 <!-- mdbook-xgettext: skip -->
-
+* Length known at compile time
+* Can hold multiple types
+* Can't iterate over a tuple
 ```rust,editable
 fn main() {
     let t: (i8, bool) = (7, true);

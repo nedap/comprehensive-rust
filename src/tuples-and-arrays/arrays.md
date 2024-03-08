@@ -5,7 +5,8 @@ minutes: 5
 # Arrays
 
 <!-- mdbook-xgettext: skip -->
-
+* Single type collection
+* Length known at compile time
 ```rust,editable
 fn main() {
     let mut a: [i8; 10] = [42; 10];

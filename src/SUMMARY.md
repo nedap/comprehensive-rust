@@ -60,11 +60,16 @@
   - [Named Structs](user-defined-types/named-structs.md)
   - [Tuple Structs](user-defined-types/tuple-structs.md)
   - [Enums](user-defined-types/enums.md)
-  - [`Option`](std-types/option.md)
-  - [`Result`](std-types/result.md)
+    - [`Option`](std-types/option.md)
+    - [`Result`](std-types/result.md)
+      - [Panics](error-handling/panics.md)
+      - [Try Operator](error-handling/try.md)
+  - [Methods](methods-and-traits/methods.md)
   - [Static and Const](user-defined-types/static-and-const.md)
   - [Exercise: Elevator Events](user-defined-types/exercise.md)
     - [Solution](user-defined-types/solution.md)
+  - [Exercise: Error Handling](user-defined-types/exercise2.md)
+    - [Solution](user-defined-types/solution2.md)
 
 ---
 
@@ -78,7 +83,6 @@
   - [Exercise: Expression Evaluation](pattern-matching/exercise.md)
     - [Solution](pattern-matching/solution.md)
 - [Methods and Traits](methods-and-traits.md)
-  - [Methods](methods-and-traits/methods.md)
   - [Traits](methods-and-traits/traits.md)
     - [Implmementing Traits](methods-and-traits/traits/implementing.md)
     - [Associated Types](methods-and-traits/traits/associated-types.md)

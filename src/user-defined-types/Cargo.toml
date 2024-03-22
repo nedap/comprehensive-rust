@@ -7,3 +7,7 @@ publish = false
 [[bin]]
 name = "elevator"
 path = "exercise.rs"
+
+[[bin]]
+name = "error_handling"
+path = "error_handling_exercise.rs"

@@ -6,53 +6,50 @@ minutes: 8
 
 Like tuples, structs and enums can also be destructured by matching:
 
-## Structs
-
-```rust,editable
-{{#include ../../third_party/rust-by-example/destructuring-structs.rs}}
-```
-
 ## Enums
 
 Patterns can also be used to bind variables to parts of your values. This is how
 you inspect the structure of your types. Let us start with a simple `enum` type:
 
 ```rust,editable
-enum Result {
-    Ok(i32),
-    Err(String),
+use rand::Rng;
+
+enum Action {
+    Walk(u32),
+    Turn(f64),
 }
 
-fn divide_in_two(n: i32) -> Result {
-    if n % 2 == 0 {
-        Result::Ok(n / 2)
-    } else {
-        Result::Err(format!("cannot divide {n} into two equal parts"))
+fn random_action() -> Action {
+    let mut rng = rand::thread_rng();
+
+    match rng.gen_range(1..3) { // Random value between 1 and 2
+      1 => Action::Walk(rng.gen_range(1..100)), // Generate a random u32 between 1 and 99
+      2 => Action::Turn(rng.gen_range(0.0..360.0)), // Generate a random f64 between 0.0 and 359.9
+      _ => panic!("oh no"),
     }
 }
 
 fn main() {
-    let n = 100;
-    match divide_in_two(n) {
-        Result::Ok(half) => println!("{n} divided in two is {half}"),
-        Result::Err(msg) => println!("sorry, an error happened: {msg}"),
+    let action = random_action();
+    match action {
+      Action::Walk(distance) => println!("Walking {distance} miles"),
+      Action::Turn(degrees) => println!("Turning {degrees:.2} degrees"),
     }
 }
 ```
 
-Here we have used the arms to _destructure_ the `Result` value. In the first
-arm, `half` is bound to the value inside the `Ok` variant. In the second arm,
-`msg` is bound to the error message.
+Here we have used the arms to _destructure_ the `Action` value. In the first
+arm, `distance` is bound to the value inside the `Walk` variant. In the second arm,
+`degrees` is bound to the `Turn` variant.
+
+
+## Structs
+
+```rust,editable
+{{#include ../../third_party/rust-by-example/destructuring-structs.rs}}
+```
 
 <details>
-
-# Structs
-
-- Change the literal values in `foo` to match with the other patterns.
-- Add a new field to `Foo` and make changes to the pattern as needed.
-- The distinction between a capture and a constant expression can be hard to
-  spot. Try changing the `2` in the second arm to a variable, and see that it
-  subtly doesn't work. Change it to a `const` and see it working again.
 
 # Enums
 
@@ -74,5 +71,13 @@ Key points:
   ["match ergonomics"](https://rust-lang.github.io/rfcs/2005-match-ergonomics.html)
   appeared in Rust 2018. If you want to support older Rust, replace `msg` with
   `ref msg` in the pattern.
+
+# Structs
+
+- Change the literal values in `foo` to match with the other patterns.
+- Add a new field to `Foo` and make changes to the pattern as needed.
+- The distinction between a capture and a constant expression can be hard to
+  spot. Try changing the `2` in the second arm to a variable, and see that it
+  subtly doesn't work. Change it to a `const` and see it working again.
 
 </details>

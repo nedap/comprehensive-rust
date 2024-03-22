@@ -18,13 +18,16 @@ The
 lets you execute different code depending on whether a value matches a pattern:
 
 ```rust,editable
+use std::time::Duration;
+use std::thread;
+
 fn sleep_for(secs: f32) {
-    let dur = if let Ok(dur) = std::time::Duration::try_from_secs_f32(secs) {
+    let dur = if let Ok(dur) = Duration::try_from_secs_f32(secs) {
         dur
     } else {
-        std::time::Duration::from_millis(500)
+        Duration::from_millis(500)
     };
-    std::thread::sleep(dur);
+    thread::sleep(dur);
     println!("slept for {:?}", dur);
 }
 

@@ -44,11 +44,11 @@ fn eval(e: Expression) -> Result<i64, String> {
         Expression::Op { op, left, right } => {
             let left = match eval(*left) {
                 Ok(v) => v,
-                e @ Err(_) => return e,
+                Err(err) => return Err(err),
             };
             let right = match eval(*right) {
                 Ok(v) => v,
-                e @ Err(_) => return e,
+                Err(err) => return Err(err),
             };
             Ok(match op {
                 Operation::Add => left + right,

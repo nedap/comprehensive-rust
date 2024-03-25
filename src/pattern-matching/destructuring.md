@@ -19,6 +19,14 @@ enum Action {
     Turn(f64),
 }
 
+fn main() {
+    let action = random_action();
+    match action {
+      Action::Walk(distance) => println!("Walking {distance} miles"),
+      Action::Turn(degrees) => println!("Turning {degrees:.2} degrees"),
+    }
+}
+
 fn random_action() -> Action {
     let mut rng = rand::thread_rng();
 
@@ -26,14 +34,6 @@ fn random_action() -> Action {
       1 => Action::Walk(rng.gen_range(1..100)), // Generate a random u32 between 1 and 99
       2 => Action::Turn(rng.gen_range(0.0..360.0)), // Generate a random f64 between 0.0 and 359.9
       _ => panic!("oh no"),
-    }
-}
-
-fn main() {
-    let action = random_action();
-    match action {
-      Action::Walk(distance) => println!("Walking {distance} miles"),
-      Action::Turn(degrees) => println!("Turning {degrees:.2} degrees"),
     }
 }
 ```
@@ -57,6 +57,7 @@ Key points:
 
 - The `if`/`else` expression is returning an enum that is later unpacked with a
   `match`.
+- Add `Shout(String)`.
 - You can try adding a third variant to the enum definition and displaying the
   errors when running the code. Point out the places where your code is now
   inexhaustive and how the compiler tries to give you hints.
